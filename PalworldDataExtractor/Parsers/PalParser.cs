@@ -24,9 +24,6 @@ class PalParser
             Size = ParseSize(obj, "Size"),
             ElementType1 = ParseElementType(obj, "ElementType1"),
             ElementType2 = ParseElementType(obj, "ElementType2"),
-            GenusCategory = ParseGenusCategory(obj, "GenusCategory"),
-            OrganizationType = ParseOrganization(obj, "OrganizationType"),
-            WeaponType = ParseWeapon(obj, "Weapon"),
             Price = ParseFloat(obj, "Price"),
             IsNocturnal = ParseBool(obj, "Nocturnal"),
             IsEdible = ParseBool(obj, "Edible"),
@@ -102,12 +99,6 @@ class PalParser
     static string ParseSize(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalSizeType::");
 
     static string ParseElementType(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalElementType::");
-
-    static string ParseGenusCategory(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalGenusCategoryType::");
-
-    static string ParseOrganization(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalOrganizationType::");
-
-    static string ParseWeapon(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalWeaponType::");
 
     static string ParseEnumValue(FStructFallback obj, string property, string prefix)
     {

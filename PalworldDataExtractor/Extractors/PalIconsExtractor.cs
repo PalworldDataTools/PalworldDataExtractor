@@ -19,7 +19,7 @@ class PalIconsExtractor
 
     public async Task<IReadOnlyDictionary<string, byte[]>> ExtractPalsAsync()
     {
-        const string palAssetFilePath = @"Game\Pal\DataTable\Character\DT_PalCharacterIconDataTable.DT_PalCharacterIconDataTable";
+        const string palAssetFilePath = @"Pal\Content\Pal\DataTable\Character\DT_PalCharacterIconDataTable.DT_PalCharacterIconDataTable";
 
         UDataTable palTable = await _provider.LoadObjectAsync<UDataTable>(palAssetFilePath);
 

@@ -39,10 +39,7 @@ public class DataExporter
         List<Task> work =
         [
             ExportEnum(enumsDirectory, "ElementType", p => new[] { p.ElementType1, p.ElementType2 }, data),
-            ExportEnum(enumsDirectory, "GenusCategoryType", p => new[] { p.GenusCategory }, data),
-            ExportEnum(enumsDirectory, "OrganizationType", p => new[] { p.OrganizationType }, data),
-            ExportEnum(enumsDirectory, "SizeType", p => new[] { p.Size }, data),
-            ExportEnum(enumsDirectory, "WeaponType", p => new[] { p.WeaponType }, data)
+            ExportEnum(enumsDirectory, "SizeType", p => new[] { p.Size }, data)
         ];
 
 

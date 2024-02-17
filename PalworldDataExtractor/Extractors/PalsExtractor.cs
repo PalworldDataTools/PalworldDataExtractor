@@ -17,7 +17,7 @@ class PalsExtractor
 
     public async Task<IEnumerable<Pal>> ExtractPalsAsync()
     {
-        const string palAssetFilePath = @"Game\Pal\DataTable\Character\DT_PalMonsterParameter";
+        const string palAssetFilePath = @"Pal\Content\Pal\DataTable\Character\DT_PalMonsterParameter";
 
         List<UObject> palAssets = (await _provider.LoadAllObjectsAsync(palAssetFilePath)).ToList();
         if (palAssets.Count == 0)

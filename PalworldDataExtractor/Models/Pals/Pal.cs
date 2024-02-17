@@ -9,9 +9,6 @@ public class Pal
     public required string Size { get; init; }
     public required string ElementType1 { get; init; }
     public required string ElementType2 { get; init; }
-    public required string GenusCategory { get; init; }
-    public required string OrganizationType { get; init; }
-    public required string WeaponType { get; init; }
     public required float Price { get; init; }
 
     public required bool IsNocturnal { get; init; }
