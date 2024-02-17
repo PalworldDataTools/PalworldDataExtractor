@@ -7,9 +7,11 @@ namespace PalworldDataExtractor.Cli;
 
 public class DataExporter
 {
-    static readonly JsonSerializerOptions DefaultSerializerOptions = new() { WriteIndented = true, Converters = { new JsonStringEnumConverter() } };
+    static readonly JsonSerializerOptions DefaultSerializerOptions = new()
+        { WriteIndented = true, Converters = { new JsonStringEnumConverter() }, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
     const string TribesDirectory = "Pals";
     const string EnumsDirectory = "Enums";
+    const string PalsManifestFileName = "pals";
 
     readonly string _targetDirectory;
     readonly JsonSerializerOptions _jsonSerializerOptions;
@@ -43,13 +45,14 @@ public class DataExporter
         ];
 
         work.AddRange(data.Tribes.Select(tribe => ExportTribe(tribesDirectory, tribe, data.TribeIcons.GetValueOrDefault(tribe.Name))));
+        work.Add(ExportPalsManifest(tribesDirectory, data));
 
         await Task.WhenAll(work);
     }
 
     async Task ExportTribe(DirectoryInfo root, PalTribe tribe, byte[]? icon)
     {
-        DirectoryInfo directory = root.CreateSubdirectory(tribe.Name);
+        DirectoryInfo directory = root.CreateSubdirectory(tribe.GetDirectoryName());
 
         List<Task> work = new();
 
@@ -57,22 +60,28 @@ public class DataExporter
 
         if (icon != null)
         {
-            work.Add(ExportIcon(directory, tribe.Name, icon));
+            work.Add(ExportIcon(directory, tribe, icon));
         }
 
         await Task.WhenAll(work);
     }
 
-    async Task ExportPal(DirectoryInfo root, Pal pal)
+    async Task ExportPalsManifest(DirectoryInfo root, ExtractedData data)
     {
-        string filePath = Path.Combine(root.FullName, pal.Name + ".json");
-        await using FileStream stream = File.OpenWrite(filePath);
-        await JsonSerializer.SerializeAsync(stream, pal, _jsonSerializerOptions);
+        string filePath = Path.Combine(root.FullName, PalsManifestFileName + ".json");
+        IReadOnlyDictionary<string, PalsManifest.Entry> manifest = PalsManifest.FromExtractedData(data);
+        await WriteAsJson(manifest, filePath);
     }
 
-    static async Task ExportIcon(DirectoryInfo root, string name, byte[] icon)
+    async Task ExportPal(DirectoryInfo root, Pal pal)
     {
-        string filePath = Path.Combine(root.FullName, name + ".png");
+        string filePath = Path.Combine(root.FullName, pal.GetPalFileName());
+        await WriteAsJson(pal, filePath);
+    }
+
+    static async Task ExportIcon(DirectoryInfo root, PalTribe tribe, byte[] icon)
+    {
+        string filePath = Path.Combine(root.FullName, tribe.GetIconFileName());
         await File.WriteAllBytesAsync(filePath, icon);
     }
 
@@ -83,7 +92,12 @@ public class DataExporter
 
         string[] values = data.Tribes.SelectMany(t => t.Pals).SelectMany(getValues).Distinct().Order().ToArray();
 
-        await using FileStream stream = File.OpenWrite(filePath);
-        await JsonSerializer.SerializeAsync(stream, values, _jsonSerializerOptions);
+        await WriteAsJson(values, filePath);
+    }
+
+    async Task WriteAsJson(object obj, string path)
+    {
+        await using FileStream stream = File.OpenWrite(path);
+        await JsonSerializer.SerializeAsync(stream, obj, _jsonSerializerOptions);
     }
 }
