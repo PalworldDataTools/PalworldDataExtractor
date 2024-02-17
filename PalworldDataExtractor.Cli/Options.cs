@@ -22,7 +22,7 @@ class Options
     [Option("ue-version", HelpText = "Version of UnrealEngine to use", Default = DefaultUnrealEngineVersion)]
     public string? UnrealEngineVersion { get; set; }
 
-    [Option("usmap", HelpText = ".pak file name", Default = DefaultMappingsFilePath)]
+    [Option("usmap", HelpText = ".usmap mapping file to use", Default = DefaultMappingsFilePath)]
     public string? MappingsFilePath { get; set; }
 
     [Option('q', "quiet", HelpText = "Do not print anything else than errors", Default = false)]
