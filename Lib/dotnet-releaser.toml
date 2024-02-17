@@ -1,0 +1,8 @@
+profile = "default"
+
+[msbuild]
+project = "./Lib.csproj"
+
+[github]
+user = "PalworldDataTools"
+repo = "PalworldDataExtractor"

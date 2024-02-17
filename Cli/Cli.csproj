@@ -9,6 +9,7 @@
         <RootNamespace>PalworldDataExtractor.Cli</RootNamespace>
         <AssemblyName>PalworldDataExtractor</AssemblyName>
         <IsPackable>false</IsPackable>
+        <PackageId>PalworldDataExtractor.Cli</PackageId>
     </PropertyGroup>
 
     <ItemGroup>

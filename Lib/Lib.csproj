@@ -11,11 +11,15 @@
         <Version>0.1.0</Version>
         <Title>Palworld Data Extractor</Title>
         <Authors>Ismail Bennani</Authors>
+        <NeutralLanguage>en</NeutralLanguage>
+        <Copyright>Ismail Bennani</Copyright>
         <Description>Extract data from Palworld .pak file</Description>
         <PackageProjectUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</PackageProjectUrl>
         <RepositoryUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</RepositoryUrl>
+        <PublishRepositoryUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</PublishRepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>palworld data extractor extraction</PackageTags>
+        <PackageTags>palworld;data;extractor;extraction;tool</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
