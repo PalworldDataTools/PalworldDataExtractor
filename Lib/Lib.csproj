@@ -7,6 +7,15 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <RootNamespace>PalworldDataExtractor</RootNamespace>
         <AssemblyName>PalworldDataExtractor.Lib</AssemblyName>
+        <PackageId>PalworldDataExtractor</PackageId>
+        <Version>0.1.0</Version>
+        <Title>Palworld Data Extractor</Title>
+        <Authors>Ismail Bennani</Authors>
+        <Description>Extract data from Palworld .pak file</Description>
+        <PackageProjectUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>palworld data extractor extraction</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

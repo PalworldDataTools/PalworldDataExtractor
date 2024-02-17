@@ -8,6 +8,7 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <RootNamespace>PalworldDataExtractor.Cli</RootNamespace>
         <AssemblyName>PalworldDataExtractor</AssemblyName>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
