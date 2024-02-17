@@ -15,7 +15,7 @@ public class DataExtractorTest
     static string PalPakPath => Path.Combine(PalDir, PalPakFolder);
 
     [TestMethod]
-    public async Task ExtractPals()
+    public async Task ShouldExtractData()
     {
         DataExtractor extractor = new(
             PalPakPath,

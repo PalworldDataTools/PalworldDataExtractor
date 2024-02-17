@@ -8,7 +8,8 @@ namespace PalworldDataExtractor.Cli;
 public class DataExporter
 {
     static readonly JsonSerializerOptions DefaultSerializerOptions = new() { WriteIndented = true, Converters = { new JsonStringEnumConverter() } };
-    const string TribesDirectory = "Tribes";
+    const string TribesDirectory = "PalTribes";
+    const string EnumsDirectory = "Enums";
 
     readonly string _targetDirectory;
     readonly JsonSerializerOptions _jsonSerializerOptions;
@@ -29,9 +30,18 @@ public class DataExporter
         }
 
         DirectoryInfo root = Directory.CreateDirectory(_targetDirectory);
+        DirectoryInfo enumsDirectory = root.CreateSubdirectory(EnumsDirectory);
         DirectoryInfo tribesDirectory = root.CreateSubdirectory(TribesDirectory);
 
-        List<Task> work = new();
+        List<Task> work =
+        [
+            ExportEnum(enumsDirectory, "ElementType", p => new[] { p.ElementType1, p.ElementType2 }, data),
+            ExportEnum(enumsDirectory, "GenusCategoryType", p => new[] { p.GenusCategory }, data),
+            ExportEnum(enumsDirectory, "OrganizationType", p => new[] { p.OrganizationType }, data),
+            ExportEnum(enumsDirectory, "SizeType", p => new[] { p.Size }, data),
+            ExportEnum(enumsDirectory, "WeaponType", p => new[] { p.WeaponType }, data)
+        ];
+
         work.AddRange(data.Tribes.Select(tribe => ExportTribe(tribesDirectory, tribe)));
 
         await Task.WhenAll(work);
@@ -48,5 +58,16 @@ public class DataExporter
         string filePath = Path.Combine(root.FullName, pal.Name + ".json");
         await using FileStream stream = File.OpenWrite(filePath);
         await JsonSerializer.SerializeAsync(stream, pal, _jsonSerializerOptions);
+    }
+
+    async Task ExportEnum(DirectoryInfo root, string enumName, Func<Pal, IEnumerable<string>> getValues, ExtractedData data)
+    {
+        string fileName = enumName + ".json";
+        string filePath = Path.Combine(root.FullName, fileName);
+
+        string[] values = data.Tribes.SelectMany(t => t.Pals).SelectMany(getValues).Distinct().Order().ToArray();
+
+        await using FileStream stream = File.OpenWrite(filePath);
+        await JsonSerializer.SerializeAsync(stream, values, _jsonSerializerOptions);
     }
 }

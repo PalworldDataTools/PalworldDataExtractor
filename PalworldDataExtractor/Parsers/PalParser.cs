@@ -99,31 +99,25 @@ public class PalParser
         return tribeName;
     }
 
-    static PalSizeType ParseSize(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalSizeType::", PalSizeType.None);
+    static string ParseSize(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalSizeType::");
 
-    static PalElementType ParseElementType(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalElementType::", PalElementType.None);
+    static string ParseElementType(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalElementType::");
 
-    static PalGenusCategoryType ParseGenusCategory(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalGenusCategoryType", PalGenusCategoryType.None);
+    static string ParseGenusCategory(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalGenusCategoryType::");
 
-    static PalOrganizationType ParseOrganization(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalOrganizationType", PalOrganizationType.None);
+    static string ParseOrganization(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalOrganizationType::");
 
-    static PalWeaponType ParseWeapon(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalWeaponType", PalWeaponType.None);
+    static string ParseWeapon(FStructFallback obj, string property) => ParseEnumValue(obj, property, "EPalWeaponType::");
 
-    static TEnum ParseEnumValue<TEnum>(FStructFallback obj, string property, string prefix, TEnum defaultValue)
+    static string ParseEnumValue(FStructFallback obj, string property, string prefix)
     {
         string? valueString = ParseString(obj, property);
         if (valueString == null || !valueString.StartsWith(prefix))
         {
-            return defaultValue;
+            return "None";
         }
 
-        string typeName = valueString[prefix.Length..];
-        if (Enum.TryParse(typeof(TEnum), typeName, true, out object? type))
-        {
-            return (TEnum)type;
-        }
-
-        return defaultValue;
+        return valueString[prefix.Length..];
     }
 
     static string? ParseString(FStructFallback obj, string property) => obj.TryGetValue(out FName value, property) ? value.Text : null;
