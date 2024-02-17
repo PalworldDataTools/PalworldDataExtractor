@@ -27,27 +27,27 @@ public class PalParser
             GenusCategory = ParseGenusCategory(obj, "GenusCategory"),
             OrganizationType = ParseOrganization(obj, "OrganizationType"),
             WeaponType = ParseWeapon(obj, "Weapon"),
-            Price = ParseInt(obj, "Price"),
+            Price = ParseFloat(obj, "Price"),
             IsNocturnal = ParseBool(obj, "Nocturnal"),
             IsEdible = ParseBool(obj, "Edible"),
             IsBoss = ParseBool(obj, "IsBoss"),
             IsTowerBoss = ParseBool(obj, "IsTowerBoss"),
             IsPredator = ParseBool(obj, "IsPredator"),
             CraftSpeed = ParseInt(obj, "CraftSpeed"),
-            CaptureRate = ParseInt(obj, "CaptureRate"),
-            ExpRatio = ParseInt(obj, "ExpRatio"),
+            CaptureRate = ParseFloat(obj, "CaptureRateCorrect"),
+            ExpRatio = ParseFloat(obj, "ExpRatio"),
             SlowWalkSpeed = ParseInt(obj, "SlowWalkSpeed"),
-            WalSpeed = ParseInt(obj, "WalSpeed"),
+            WalkSpeed = ParseInt(obj, "WalkSpeed"),
             RunSpeed = ParseInt(obj, "RunSpeed"),
             RideSprintSpeed = ParseInt(obj, "RideSprintSpeed"),
             TransportSpeed = ParseInt(obj, "TransportSpeed"),
             MaxFullStomach = ParseInt(obj, "MaxFullStomach"),
-            FullStomachDecreaseRate = ParseInt(obj, "FullStomachDecreaseRate"),
+            FullStomachDecreaseRate = ParseFloat(obj, "FullStomachDecreaseRate"),
             FoodAmount = ParseInt(obj, "FoodAmount"),
             Stamina = ParseInt(obj, "Stamina"),
             ViewingDistance = ParseInt(obj, "ViewingDistance"),
             ViewingAngle = ParseInt(obj, "ViewingAngle"),
-            HearingRate = ParseInt(obj, "HearingRate"),
+            HearingRate = ParseFloat(obj, "HearingRate"),
             Combat = new PalCombat
             {
                 Hp = ParseInt(obj, "Hp"),
@@ -55,7 +55,7 @@ public class PalParser
                 ShotAttack = ParseInt(obj, "ShotAttack"),
                 Defense = ParseInt(obj, "Defense"),
                 Support = ParseInt(obj, "Support"),
-                EnemyReceiveDamageRate = ParseInt(obj, "EnemyReceiveDamageRate")
+                EnemyReceiveDamageRate = ParseFloat(obj, "EnemyReceiveDamageRate")
             },
             Breeding = new PalBreeding
             {
@@ -128,5 +128,6 @@ public class PalParser
 
     static string? ParseString(FStructFallback obj, string property) => obj.TryGetValue(out FName value, property) ? value.Text : null;
     static int ParseInt(FStructFallback obj, string property) => obj.TryGetValue(out int value, property) ? value : 0;
+    static float ParseFloat(FStructFallback obj, string property) => obj.TryGetValue(out float value, property) ? value : 0f;
     static bool ParseBool(FStructFallback obj, string property) => obj.TryGetValue(out bool value, property) && value;
 }

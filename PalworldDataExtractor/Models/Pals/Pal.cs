@@ -18,7 +18,7 @@ public class Pal
     public required PalGenusCategoryType GenusCategory { get; init; }
     public required PalOrganizationType OrganizationType { get; init; }
     public required PalWeaponType WeaponType { get; init; }
-    public required int Price { get; init; }
+    public required float Price { get; init; }
 
     public required bool IsNocturnal { get; init; }
     public required bool IsEdible { get; init; }
@@ -27,20 +27,20 @@ public class Pal
     public required bool IsPredator { get; init; }
 
     public required int CraftSpeed { get; init; }
-    public required int CaptureRate { get; init; }
-    public required int ExpRatio { get; init; }
+    public required float CaptureRate { get; init; }
+    public required float ExpRatio { get; init; }
     public required int SlowWalkSpeed { get; init; }
-    public required int WalSpeed { get; init; }
+    public required int WalkSpeed { get; init; }
     public required int RunSpeed { get; init; }
     public required int RideSprintSpeed { get; init; }
     public required int TransportSpeed { get; init; }
     public required int MaxFullStomach { get; init; }
-    public required int FullStomachDecreaseRate { get; init; }
+    public required float FullStomachDecreaseRate { get; init; }
     public required int FoodAmount { get; init; }
     public required int Stamina { get; init; }
     public required int ViewingDistance { get; init; }
     public required int ViewingAngle { get; init; }
-    public required int HearingRate { get; init; }
+    public required float HearingRate { get; init; }
 
     public required PalCombat Combat { get; init; }
     public required PalBreeding Breeding { get; init; }
@@ -54,7 +54,7 @@ public class PalCombat
     public required int ShotAttack { get; init; }
     public required int Defense { get; init; }
     public required int Support { get; init; }
-    public required int EnemyReceiveDamageRate { get; init; }
+    public required float EnemyReceiveDamageRate { get; init; }
 }
 
 public class PalBreeding
