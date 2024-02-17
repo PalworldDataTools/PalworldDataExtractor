@@ -8,7 +8,10 @@ namespace PalworldDataExtractor.Cli;
 public class DataExporter
 {
     static readonly JsonSerializerOptions DefaultSerializerOptions = new()
-        { WriteIndented = true, Converters = { new JsonStringEnumConverter() }, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
+    {
+        WriteIndented = true, Converters = { new JsonStringEnumConverter() }, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
     const string TribesDirectory = "Pals";
     const string EnumsDirectory = "Enums";
     const string PalsManifestFileName = "pals";

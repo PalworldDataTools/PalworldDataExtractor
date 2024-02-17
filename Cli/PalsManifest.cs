@@ -5,9 +5,10 @@ namespace PalworldDataExtractor.Cli;
 
 public static class PalsManifest
 {
-    public static IReadOnlyDictionary<string, Entry> FromExtractedData(ExtractedData data) => data.Tribes.ToDictionary(t => t.Name, t => ComputeEntry(t));
+    public static IReadOnlyDictionary<string, Entry> FromExtractedData(ExtractedData data) =>
+        data.Tribes.ToDictionary(t => t.Name, t => ComputeEntry(t, data.TribeIcons.ContainsKey(t.Name)));
 
-    static Entry ComputeEntry(PalTribe tribe)
+    static Entry ComputeEntry(PalTribe tribe, bool hasIcon)
     {
         if (tribe.Pals.Count == 0)
         {
@@ -22,7 +23,7 @@ public static class PalsManifest
 
         return new Entry
         {
-            Icon = Path.Combine(directoryName, tribe.GetIconFileName()),
+            Icon = hasIcon ? Path.Combine(directoryName, tribe.GetIconFileName()) : null,
             Main = Path.Combine(directoryName, mainPal.GetPalFileName()),
             Boss = bossPal != null ? Path.Combine(directoryName, bossPal.GetPalFileName()) : null,
             Gym = gymPal != null ? Path.Combine(directoryName, gymPal.GetPalFileName()) : null,
@@ -32,7 +33,7 @@ public static class PalsManifest
 
     public class Entry
     {
-        public required string Icon { get; init; }
+        public required string? Icon { get; init; }
         public required string Main { get; init; }
         public required string? Boss { get; init; }
         public required string? Gym { get; init; }

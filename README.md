@@ -61,7 +61,7 @@ The CLI exports all the data in the `ExtractedData` result of the extraction to 
         "OtherVariants": ["path/to/other/pal/variant1.json", "path/to/other/pal/variant2.json"], 
       }
       ```
-      The `Icon` and `Main` fields are always present, the `Boss`, `Gym` and `OtherVariants` fields are absent when the variants don't exist.
+      The `Main` field is always present, the `Icon` field might be absent if the icon could not be found in the .pak file, and the `Boss`, `Gym` and `OtherVariants` fields are absent when the variants don't exist.
       All the paths that are provided are relative to the manifest file, they point to the other subdirectories of the `Pals/` directory.
     - one directory per pal tribe: in each folder there is the icon representing the tribe and the data of all the existing variants (main, boss, gym, etc..)
 
