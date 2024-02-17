@@ -6,6 +6,7 @@ public class SteamManifest
     public required string BuildId { get; init; }
     public required string AppName { get; init; }
     public required long AppSize { get; init; }
+    public DateOnly? UpdateDate { get; set; }
 
     internal SteamManifest() { }
 }

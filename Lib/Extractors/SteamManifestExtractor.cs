@@ -26,7 +26,10 @@ partial class SteamManifestExtractor
             AppId = TryGetValue(manifest, "AppId", out string? appId) ? appId : "",
             BuildId = TryGetValue(manifest, "BuildId", out string? buildId) ? buildId : "",
             AppName = TryGetValue(manifest, "Name", out string? appName) ? appName : "",
-            AppSize = TryGetValue(manifest, "SizeOnDisk", out string? appSizeStr) && long.TryParse(appSizeStr, out long appSize) ? appSize : 0
+            AppSize = TryGetValue(manifest, "SizeOnDisk", out string? appSizeStr) && long.TryParse(appSizeStr, out long appSize) ? appSize : 0,
+            UpdateDate = TryGetValue(manifest, "LastUpdated", out string? lastUpdatedStr) && long.TryParse(lastUpdatedStr, out long lastUpdatedTimestamp)
+                ? DateOnly.FromDateTime(DateTimeOffset.FromUnixTimeSeconds(lastUpdatedTimestamp).Date)
+                : null
         };
     }
 
