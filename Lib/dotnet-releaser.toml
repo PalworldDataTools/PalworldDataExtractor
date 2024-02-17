@@ -6,3 +6,4 @@ project = "./Lib.csproj"
 [github]
 user = "PalworldDataTools"
 repo = "PalworldDataExtractor"
+version_prefix = "v"
