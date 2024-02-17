@@ -36,7 +36,7 @@ minimal:
   -p, --pak       (Default: Pal-Windows.pak) .pak file name
   -q, --quiet     (Default: false) Do not print anything else than errors
   --ue-version    (Default: 5.1) Version of UnrealEngine to use
-  --usmap         (Default: mappings.usmap) .pak file name
+  --usmap         (Default: mappings.usmap) .usmap mapping file to use
   --version       Display version information.
   dir (pos. 0)    Required. .pak file directory
 ```
