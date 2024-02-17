@@ -1,8 +1,27 @@
 # Palworld data extractor
 
-This tool extracts data from the palworld .pak file. Use either the `PalworldDataExtractor` library for a programmatic interface or the `PalworldDataExtractor.exe` CLI.
+This tool extracts data from the Palworld .pak file. Use either the `PalworldDataExtractor` library for a programmatic interface or the `PalworldDataExtractor.exe` CLI.
 
-## Usage
+## Library
+
+```csharp
+using CUE4Parse.UE4.Versions;
+using PalworldDataExtractor;
+using PalworldDataExtractor.Models;
+
+DataExtractor extractor = new(
+    @"Palworld\Pal\Content\Paks",
+    config =>
+    {
+        config.UnrealEngineVersion = new VersionContainer(EGame.GAME_UE5_1);
+        config.PakFileName = "Pal-Windows.pak";
+    }
+);
+
+ExtractedData data = await extractor.Extract();
+```
+
+## CLI
 
 ```
 Palworld Data Extractor v0.1.0
