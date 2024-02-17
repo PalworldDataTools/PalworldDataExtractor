@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PalworldDataExtractor\PalworldDataExtractor.csproj" />
+        <ProjectReference Include="..\Lib\Lib.csproj"/>
     </ItemGroup>
 
 </Project>

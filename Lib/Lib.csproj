@@ -5,6 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <RootNamespace>PalworldDataExtractor</RootNamespace>
+        <AssemblyName>PalworldDataExtractor.Lib</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

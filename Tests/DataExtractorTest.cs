@@ -15,6 +15,7 @@ public class DataExtractorTest
     static string PalPakPath => Path.Combine(PalDir, PalPakFolder);
 
     [TestMethod]
+    [Ignore] // must be ignored because it requires access to the .pak file which is not there when running in the CI 
     public async Task ShouldExtractData()
     {
         DataExtractor extractor = new(

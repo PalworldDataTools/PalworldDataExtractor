@@ -6,6 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <RootNamespace>PalworldDataExtractor.Cli</RootNamespace>
+        <AssemblyName>PalworldDataExtractor</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PalworldDataExtractor\PalworldDataExtractor.csproj" />
+        <ProjectReference Include="..\Lib\Lib.csproj"/>
     </ItemGroup>
 
 </Project>
