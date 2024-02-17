@@ -8,7 +8,7 @@ namespace PalworldDataExtractor.Cli;
 public class DataExporter
 {
     static readonly JsonSerializerOptions DefaultSerializerOptions = new() { WriteIndented = true, Converters = { new JsonStringEnumConverter() } };
-    const string TribesDirectory = "PalTribes";
+    const string TribesDirectory = "Pals";
     const string EnumsDirectory = "Enums";
 
     readonly string _targetDirectory;
