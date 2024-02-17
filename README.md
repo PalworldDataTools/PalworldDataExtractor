@@ -4,7 +4,7 @@ This tool extracts data from the Palworld .pak file. Use either the `PalworldDat
 
 ## Library
 
-The data are extracted from:
+The data is extracted from:
 - The game's .pak file:
   - `Pal\Content\Pal\DataTable\Character\DT_PalMonsterParameter.uasset`: data about all the pals of the game
   - `Pal\Content\Pal\DataTable\Character\DT_PalCharacterIconDataTable.DT_PalCharacterIconDataTable.uasset`: mapping from pal tribe names to icon assets

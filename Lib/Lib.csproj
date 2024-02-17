@@ -18,6 +18,7 @@
         <RepositoryUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</RepositoryUrl>
         <PublishRepositoryUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</PublishRepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>palworld;data;extractor;extraction;tool</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
