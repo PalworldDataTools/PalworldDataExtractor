@@ -4,13 +4,13 @@ using CUE4Parse.UE4.Assets.Exports.Engine;
 using PalworldDataExtractor.Models.Pals;
 using PalworldDataExtractor.Parsers;
 
-namespace PalworldDataExtractor;
+namespace PalworldDataExtractor.Extractors;
 
-public class PalExtractor
+public class PalsExtractor
 {
     readonly DefaultFileProvider _provider;
 
-    public PalExtractor(DefaultFileProvider provider)
+    public PalsExtractor(DefaultFileProvider provider)
     {
         _provider = provider;
     }

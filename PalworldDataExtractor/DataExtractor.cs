@@ -2,6 +2,7 @@
 using CUE4Parse.FileProvider.Vfs;
 using CUE4Parse.MappingsProvider;
 using CUE4Parse.UE4.VirtualFileSystem;
+using PalworldDataExtractor.Extractors;
 using PalworldDataExtractor.Models;
 using PalworldDataExtractor.Models.Pals;
 
@@ -21,10 +22,12 @@ public class DataExtractor : IDisposable
 
     public async Task<ExtractedData> Extract()
     {
-        IEnumerable<Pal> pals = await new PalExtractor(_provider).ExtractPalsAsync();
+        IEnumerable<Pal> pals = await new PalsExtractor(_provider).ExtractPalsAsync();
         PalTribe[] tribes = pals.GroupBy(p => p.TribeName).Select(g => new PalTribe { Name = g.Key ?? "???", Pals = g.ToArray() }).ToArray();
 
-        return new ExtractedData { Tribes = tribes };
+        IReadOnlyDictionary<string, byte[]> palIcons = await new PalIconsExtractor(_provider).ExtractPalsAsync();
+
+        return new ExtractedData { Tribes = tribes, TribeIcons = palIcons };
     }
 
     public void Dispose()

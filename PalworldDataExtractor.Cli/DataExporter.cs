@@ -42,15 +42,25 @@ public class DataExporter
             ExportEnum(enumsDirectory, "WeaponType", p => new[] { p.WeaponType }, data)
         ];
 
-        work.AddRange(data.Tribes.Select(tribe => ExportTribe(tribesDirectory, tribe)));
+        work.AddRange(data.Tribes.Select(tribe => ExportTribe(tribesDirectory, tribe, data.TribeIcons.GetValueOrDefault(tribe.Name))));
 
         await Task.WhenAll(work);
     }
 
-    async Task ExportTribe(DirectoryInfo root, PalTribe tribe)
+    async Task ExportTribe(DirectoryInfo root, PalTribe tribe, byte[]? icon)
     {
         DirectoryInfo directory = root.CreateSubdirectory(tribe.Name);
-        await Task.WhenAll(tribe.Pals.Select(pal => ExportPal(directory, pal)));
+
+        List<Task> work = new();
+
+        work.AddRange(tribe.Pals.Select(pal => ExportPal(directory, pal)));
+
+        if (icon != null)
+        {
+            work.Add(ExportIcon(directory, tribe.Name, icon));
+        }
+
+        await Task.WhenAll(work);
     }
 
     async Task ExportPal(DirectoryInfo root, Pal pal)
@@ -58,6 +68,12 @@ public class DataExporter
         string filePath = Path.Combine(root.FullName, pal.Name + ".json");
         await using FileStream stream = File.OpenWrite(filePath);
         await JsonSerializer.SerializeAsync(stream, pal, _jsonSerializerOptions);
+    }
+
+    static async Task ExportIcon(DirectoryInfo root, string name, byte[] icon)
+    {
+        string filePath = Path.Combine(root.FullName, name + ".png");
+        await File.WriteAllBytesAsync(filePath, icon);
     }
 
     async Task ExportEnum(DirectoryInfo root, string enumName, Func<Pal, IEnumerable<string>> getValues, ExtractedData data)
