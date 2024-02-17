@@ -19,8 +19,10 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: Install dotnet-releaser
+      shell: bash
+      run: dotnet tool install --global dotnet-releaser
+
     - name: Build, Tests, Cover, Pack and Publish
       shell: bash
-      run: |
-        dotnet tool install --global dotnet-releaser
-        dotnet-releaser run --nuget-token "${{secrets.NUGET_TOKEN}}" --github-token "${{secrets.GITHUB_TOKEN}}" Lib/dotnet-releaser.toml
+      run: dotnet-releaser run --nuget-token "${{secrets.NUGET_TOKEN}}" --github-token "${{secrets.GITHUB_TOKEN}}" Lib/dotnet-releaser.toml
