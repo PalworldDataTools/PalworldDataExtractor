@@ -1,30 +1,47 @@
 ﻿using CommandLine;
+using CommandLine.Text;
 
 namespace PalworldDataExtractor.Cli;
 
 class Options
 {
-    const string DefaultPakFileDirectory = ".";
     const string DefaultPakFileName = "Pal-Windows.pak";
     const string DefaultUnrealEngineVersion = "5.1";
     const string DefaultMappingsFilePath = "mappings.usmap";
     const string DefaultOutputDirectory = "Export";
 
-    [Value(0, MetaName = "pak_directory", HelpText = $".pak file directory (default: {DefaultPakFileDirectory})")]
-    public string PakFileDirectory { get; set; } = DefaultPakFileDirectory;
+    [Value(0, Required = true, MetaName = "dir", HelpText = ".pak file directory")]
+    public string PakFileDirectory { get; set; } = "";
 
-    [Option('o', "out", HelpText = $"output directory (default: {DefaultOutputDirectory})")]
-    public string OutputDirectory { get; set; } = DefaultOutputDirectory;
+    [Option('o', "out", HelpText = "Output directory", Default = DefaultOutputDirectory)]
+    public string? OutputDirectory { get; set; }
 
-    [Option('p', "pak", HelpText = $".pak file name (default: {DefaultPakFileName})")]
-    public string PakFileName { get; set; } = DefaultPakFileName;
+    [Option('p', "pak", HelpText = ".pak file name", Default = DefaultPakFileName)]
+    public string? PakFileName { get; set; }
 
-    [Option("ue-version", HelpText = $"Version of UnrealEngine to use (default: {DefaultUnrealEngineVersion})")]
-    public string UnrealEngineVersion { get; set; } = DefaultUnrealEngineVersion;
+    [Option("ue-version", HelpText = "Version of UnrealEngine to use", Default = DefaultUnrealEngineVersion)]
+    public string? UnrealEngineVersion { get; set; }
 
-    [Option("usmap", HelpText = $".pak file name (default: {DefaultMappingsFilePath})")]
-    public string MappingsFilePath { get; set; } = DefaultMappingsFilePath;
+    [Option("usmap", HelpText = ".pak file name", Default = DefaultMappingsFilePath)]
+    public string? MappingsFilePath { get; set; }
 
-    [Option('q', "quiet", HelpText = "do not print anything else than errors (default: false)")]
-    public bool Quiet { get; set; } = false;
+    [Option('q', "quiet", HelpText = "Do not print anything else than errors", Default = false)]
+    public bool? Quiet { get; set; }
+
+    [Usage(ApplicationAlias = "PalworldDataExtractor.exe")]
+    public static IEnumerable<Example> Examples {
+        get {
+            yield return new Example(
+                "minimal",
+                new Options
+                {
+                    PakFileDirectory = @"Palworld\Pal\Content\Paks",
+                    OutputDirectory = null,
+                    PakFileName = null,
+                    UnrealEngineVersion = null,
+                    MappingsFilePath = null
+                }
+            );
+        }
+    }
 }

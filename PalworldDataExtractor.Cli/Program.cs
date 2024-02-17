@@ -6,7 +6,7 @@ using PalworldDataExtractor;
 using PalworldDataExtractor.Cli;
 using PalworldDataExtractor.Models;
 
-ParserResult<Options>? parserResult = new Parser().ParseArguments<Options>(args);
+ParserResult<Options>? parserResult = new Parser(with => with.HelpWriter = null).ParseArguments<Options>(args);
 if (parserResult == null)
 {
     DisplayHelp(null);
@@ -15,22 +15,23 @@ if (parserResult == null)
 
 if (parserResult.Errors.Any())
 {
-    DisplayErrors(parserResult);
+    DisplayHelp(parserResult);
     return;
 }
 
 JsonSerializerOptions jsonSerializerOptions = new() { WriteIndented = true };
 
 Options options = parserResult.Value;
-string optionsJson = JsonSerializer.Serialize(options, jsonSerializerOptions);
+bool quiet = options.Quiet == true;
 
-if (!options.Quiet)
+if (!quiet)
 {
+    string optionsJson = JsonSerializer.Serialize(options, jsonSerializerOptions);
     Console.WriteLine($"Configuration: {optionsJson}");
     Console.WriteLine();
 }
 
-if (!options.Quiet)
+if (!quiet)
 {
     Console.WriteLine("Extracting...");
 }
@@ -44,35 +45,35 @@ DataExtractor extractor = new(
         config.MappingsFilePath = options.MappingsFilePath ?? config.MappingsFilePath;
     }
 );
-ExtractedData result = await extractor.Extract();
+ExtractedData data = await extractor.Extract();
 
-if (!options.Quiet)
+if (!quiet)
 {
     Console.WriteLine("Extraction complete.");
     Console.WriteLine();
 }
 
-string outputDirectory = Path.GetFullPath(options.OutputDirectory);
+string outputDirectory = Path.GetFullPath(options.OutputDirectory ?? ".");
 
-if (!options.Quiet)
+if (!quiet)
 {
     Console.WriteLine($"Exporting to {outputDirectory}...");
 }
 
 DataExporter exporter = new(outputDirectory);
-await exporter.Export(result);
+await exporter.Export(data);
 
-if (!options.Quiet)
+if (!quiet)
 {
     Console.WriteLine("Export complete.");
     Console.WriteLine();
 }
 
-if (!options.Quiet)
+if (!quiet)
 {
     Console.WriteLine("Statistics:");
-    Console.WriteLine($"Tribes: {result.Tribes.Count}");
-    Console.WriteLine($"Pals: {result.Tribes.Sum(t => t.Pals.Count)}");
+    Console.WriteLine($"Tribes: {data.Tribes.Count}");
+    Console.WriteLine($"Pals: {data.Tribes.Sum(t => t.Pals.Count)}");
     Console.WriteLine();
 }
 
@@ -129,27 +130,27 @@ VersionContainer? ParseVersion(string? version)
 
 void DisplayHelp(ParserResult<Options>? result)
 {
-    Console.WriteLine(
-        HelpText.AutoBuild(
+    const string nameAndVersion = $"Palworld Data Extractor v{Metadata.Version}";
+
+    string helpText;
+    if (result != null && result.Errors.IsVersion())
+    {
+        helpText = nameAndVersion;
+    }
+    else
+    {
+        helpText = HelpText.AutoBuild(
             result,
             h =>
             {
                 h.AdditionalNewLineAfterOption = false;
-                h.Heading = "Palworld Data Extractor v0.1";
+                h.AddNewLineBetweenHelpSections = true;
+                h.Heading = nameAndVersion;
+                h.OptionComparison = HelpText.RequiredThenAlphaComparison;
                 return h;
             }
-        )
-    );
-}
-
-void DisplayErrors(ParserResult<Options> result)
-{
-    foreach (Error? err in result.Errors)
-    {
-        Console.Error.WriteLine(err);
+        );
     }
 
-    Console.Error.WriteLine();
-
-    DisplayHelp(result);
+    Console.WriteLine(helpText);
 }
