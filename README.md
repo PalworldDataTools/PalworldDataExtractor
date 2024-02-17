@@ -28,7 +28,7 @@ DataExtractor extractor = new(
         config.UnrealEngineVersion = new VersionContainer(EGame.GAME_UE5_1);
         config.PakFileName = "Pal-Windows.pak";
     }
-);[pals.json](PalworldDataExtractor.Cli%2Fbin%2FDebug%2Fnet8.0%2FExport%2FPals%2Fpals.json)
+);
 
 ExtractedData data = await extractor.Extract();
 ```
