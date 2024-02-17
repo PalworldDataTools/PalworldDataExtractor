@@ -5,7 +5,7 @@ using PalworldDataExtractor.Models.Pals;
 
 namespace PalworldDataExtractor.Parsers;
 
-public class PalParser
+class PalParser
 {
     public bool TryParse(string property, FStructFallback obj, [NotNullWhen(true)] out Pal? pal)
     {

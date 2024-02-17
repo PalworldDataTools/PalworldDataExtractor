@@ -6,7 +6,7 @@ using PalworldDataExtractor.Parsers;
 
 namespace PalworldDataExtractor.Extractors;
 
-public class PalsExtractor
+class PalsExtractor
 {
     readonly DefaultFileProvider _provider;
 

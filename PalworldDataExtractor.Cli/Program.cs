@@ -53,6 +53,13 @@ if (!quiet)
     Console.WriteLine();
 }
 
+if (!quiet && data.SteamManifest != null)
+{
+    string steamManifestJson = JsonSerializer.Serialize(data.SteamManifest, jsonSerializerOptions);
+    Console.WriteLine($"Steam app detected: {steamManifestJson}");
+    Console.WriteLine();
+}
+
 string outputDirectory = Path.GetFullPath(options.OutputDirectory ?? ".");
 
 if (!quiet)

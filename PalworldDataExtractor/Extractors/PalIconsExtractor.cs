@@ -8,7 +8,7 @@ using SkiaSharp;
 
 namespace PalworldDataExtractor.Extractors;
 
-public class PalIconsExtractor
+class PalIconsExtractor
 {
     readonly DefaultFileProvider _provider;
 

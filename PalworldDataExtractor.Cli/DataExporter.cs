@@ -12,6 +12,7 @@ public class DataExporter
     const string TribesDirectory = "Pals";
     const string EnumsDirectory = "Enums";
     const string PalsManifestFileName = "pals";
+    const string SteamManifestFileName = "steam";
 
     readonly string _targetDirectory;
     readonly JsonSerializerOptions _jsonSerializerOptions;
@@ -44,10 +45,23 @@ public class DataExporter
             ExportEnum(enumsDirectory, "WeaponType", p => new[] { p.WeaponType }, data)
         ];
 
+
+        work.Add(ExportSteamManifest(root, data));
         work.AddRange(data.Tribes.Select(tribe => ExportTribe(tribesDirectory, tribe, data.TribeIcons.GetValueOrDefault(tribe.Name))));
         work.Add(ExportPalsManifest(tribesDirectory, data));
 
         await Task.WhenAll(work);
+    }
+
+    async Task ExportSteamManifest(DirectoryInfo root, ExtractedData data)
+    {
+        if (data.SteamManifest == null)
+        {
+            return;
+        }
+
+        string filePath = Path.Combine(root.FullName, SteamManifestFileName + ".json");
+        await WriteAsJson(data.SteamManifest, filePath);
     }
 
     async Task ExportTribe(DirectoryInfo root, PalTribe tribe, byte[]? icon)
