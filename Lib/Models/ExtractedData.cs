@@ -13,8 +13,6 @@ public class ExtractedData
     public required IReadOnlyCollection<PalTribe> Tribes { get; init; }
     public required IReadOnlyDictionary<string, byte[]> TribeIcons { get; init; }
 
-    internal ExtractedData() { }
-
     public static async Task Serialize(ExtractedData data, Stream outStream) =>
         await JsonSerializer.SerializeAsync(outStream, data, typeof(ExtractedData), ExtractedDataJsonSerializerContext.Default);
 
