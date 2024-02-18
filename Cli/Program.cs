@@ -62,6 +62,33 @@ if (!quiet && data.SteamManifest != null)
 
 string outputDirectory = Path.GetFullPath(options.OutputDirectory ?? ".");
 
+if (Directory.Exists(outputDirectory))
+{
+    Directory.Delete(outputDirectory, true);
+}
+Directory.CreateDirectory(outputDirectory);
+
+string rawDataJsonPath = Path.Combine(outputDirectory, "data.json");
+
+if (!quiet)
+{
+    Console.WriteLine($"Exporting raw data as JSON to {rawDataJsonPath}...");
+}
+
+string? serializedData;
+using (MemoryStream serializedDataStream = new())
+{
+    await ExtractedData.Serialize(data, serializedDataStream);
+    serializedData = serializedDataStream.ToString();
+}
+await File.WriteAllTextAsync(rawDataJsonPath, serializedData);
+
+if (!quiet)
+{
+    Console.WriteLine("Export complete.");
+    Console.WriteLine();
+}
+
 if (!quiet)
 {
     Console.WriteLine($"Exporting to {outputDirectory}...");

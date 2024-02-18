@@ -30,12 +30,8 @@ public class DataExporter
 
     public async Task Export(ExtractedData data)
     {
-        if (Directory.Exists(_targetDirectory))
-        {
-            Directory.Delete(_targetDirectory, true);
-        }
+        DirectoryInfo root = !Directory.Exists(_targetDirectory) ? Directory.CreateDirectory(_targetDirectory) : new DirectoryInfo(_targetDirectory);
 
-        DirectoryInfo root = Directory.CreateDirectory(_targetDirectory);
         DirectoryInfo enumsDirectory = root.CreateSubdirectory(EnumsDirectory);
         DirectoryInfo tribesDirectory = root.CreateSubdirectory(TribesDirectory);
 
