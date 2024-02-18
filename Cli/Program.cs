@@ -72,7 +72,7 @@ string rawDataJsonPath = Path.Combine(outputDirectory, "data.json");
 
 if (!quiet)
 {
-    Console.WriteLine($"Exporting raw data as JSON to {rawDataJsonPath}...");
+    Console.WriteLine($"Exporting serialized data to {rawDataJsonPath}...");
 }
 
 await using (FileStream fileStream = File.Open(rawDataJsonPath, FileMode.Create))

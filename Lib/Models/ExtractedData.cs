@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using PalworldDataExtractor.Models.Pals;
 using PalworldDataExtractor.Models.Steam;
 
@@ -14,6 +15,15 @@ public class ExtractedData
 
     internal ExtractedData() { }
 
-    public static async Task Serialize(ExtractedData data, Stream outStream) => await JsonSerializer.SerializeAsync(outStream, data, SerializerOptions);
-    public static async Task<ExtractedData?> Deserialize(Stream stream) => await JsonSerializer.DeserializeAsync<ExtractedData>(stream, SerializerOptions);
+    public static async Task Serialize(ExtractedData data, Stream outStream) =>
+        await JsonSerializer.SerializeAsync(outStream, data, typeof(ExtractedData), ExtractedDataJsonSerializerContext.Default);
+
+    public static async Task<ExtractedData?> Deserialize(Stream stream) =>
+        await JsonSerializer.DeserializeAsync(stream, typeof(ExtractedData), ExtractedDataJsonSerializerContext.Default) as ExtractedData;
+}
+
+[JsonSourceGenerationOptions(WriteIndented = true)]
+[JsonSerializable(typeof(ExtractedData))]
+partial class ExtractedDataJsonSerializerContext : JsonSerializerContext
+{
 }
