@@ -75,13 +75,10 @@ if (!quiet)
     Console.WriteLine($"Exporting raw data as JSON to {rawDataJsonPath}...");
 }
 
-string? serializedData;
-using (MemoryStream serializedDataStream = new())
+await using (FileStream fileStream = File.Open(rawDataJsonPath, FileMode.Create))
 {
-    await ExtractedData.Serialize(data, serializedDataStream);
-    serializedData = serializedDataStream.ToString();
+    await ExtractedData.Serialize(data, fileStream);
 }
-await File.WriteAllTextAsync(rawDataJsonPath, serializedData);
 
 if (!quiet)
 {
