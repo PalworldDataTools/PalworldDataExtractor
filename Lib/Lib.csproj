@@ -8,7 +8,7 @@
         <RootNamespace>PalworldDataExtractor</RootNamespace>
         <AssemblyName>PalworldDataExtractor.Lib</AssemblyName>
         <PackageId>PalworldDataExtractor.Lib</PackageId>
-        <Version>0.2.0</Version>
+        <Version>0.2.1</Version>
         <Title>Palworld Data Extractor</Title>
         <Authors>Ismail Bennani</Authors>
         <NeutralLanguage>en</NeutralLanguage>
