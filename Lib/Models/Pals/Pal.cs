@@ -33,7 +33,27 @@ public class Pal
     public required int ViewingAngle { get; init; }
     public required float HearingRate { get; init; }
 
-    public required PalCombat Combat { get; init; }
-    public required PalBreeding Breeding { get; init; }
-    public required PalWork Work { get; init; }
+    public required int Hp { get; init; }
+    public required int MeleeAttack { get; init; }
+    public required int ShotAttack { get; init; }
+    public required int Defense { get; init; }
+    public required int Support { get; init; }
+    public required float EnemyReceiveDamageRate { get; init; }
+
+    public required int MaleProbability { get; init; }
+    public required int CombiRank { get; init; }
+
+    public required int EmitFlame { get; init; }
+    public required int Watering { get; init; }
+    public required int Seeding { get; init; }
+    public required int GenerateElectricity { get; init; }
+    public required int Handcraft { get; init; }
+    public required int Collection { get; init; }
+    public required int Deforest { get; init; }
+    public required int Mining { get; init; }
+    public required int OilExtraction { get; init; }
+    public required int ProduceMedicine { get; init; }
+    public required int Cool { get; init; }
+    public required int Transport { get; init; }
+    public required int MonsterFarm { get; init; }
 }

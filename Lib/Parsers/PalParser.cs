@@ -45,36 +45,27 @@ class PalParser
             ViewingDistance = ParseInt(obj, "ViewingDistance"),
             ViewingAngle = ParseInt(obj, "ViewingAngle"),
             HearingRate = ParseFloat(obj, "HearingRate"),
-            Combat = new PalCombat
-            {
-                Hp = ParseInt(obj, "Hp"),
-                MeleeAttack = ParseInt(obj, "MeleeAttack"),
-                ShotAttack = ParseInt(obj, "ShotAttack"),
-                Defense = ParseInt(obj, "Defense"),
-                Support = ParseInt(obj, "Support"),
-                EnemyReceiveDamageRate = ParseFloat(obj, "EnemyReceiveDamageRate")
-            },
-            Breeding = new PalBreeding
-            {
-                MaleProbability = ParseInt(obj, "MaleProbability"),
-                CombiRank = ParseInt(obj, "CombiRank")
-            },
-            Work = new PalWork
-            {
-                EmitFlame = ParseInt(obj, "WorkSuitability_EmitFlame"),
-                Watering = ParseInt(obj, "WorkSuitability_Watering"),
-                Seeding = ParseInt(obj, "WorkSuitability_Seeding"),
-                GenerateElectricity = ParseInt(obj, "WorkSuitability_GenerateElectricity"),
-                Handcraft = ParseInt(obj, "WorkSuitability_Handcraft"),
-                Collection = ParseInt(obj, "WorkSuitability_Collection"),
-                Deforest = ParseInt(obj, "WorkSuitability_Deforest"),
-                Mining = ParseInt(obj, "WorkSuitability_Mining"),
-                OilExtraction = ParseInt(obj, "WorkSuitability_OilExtraction"),
-                ProduceMedicine = ParseInt(obj, "WorkSuitability_ProduceMedicine"),
-                Cool = ParseInt(obj, "WorkSuitability_Cool"),
-                Transport = ParseInt(obj, "WorkSuitability_Transport"),
-                MonsterFarm = ParseInt(obj, "WorkSuitability_MonsterFarm")
-            }
+            Hp = ParseInt(obj, "Hp"),
+            MeleeAttack = ParseInt(obj, "MeleeAttack"),
+            ShotAttack = ParseInt(obj, "ShotAttack"),
+            Defense = ParseInt(obj, "Defense"),
+            Support = ParseInt(obj, "Support"),
+            EnemyReceiveDamageRate = ParseFloat(obj, "EnemyReceiveDamageRate"),
+            MaleProbability = ParseInt(obj, "MaleProbability"),
+            CombiRank = ParseInt(obj, "CombiRank"),
+            EmitFlame = ParseInt(obj, "WorkSuitability_EmitFlame"),
+            Watering = ParseInt(obj, "WorkSuitability_Watering"),
+            Seeding = ParseInt(obj, "WorkSuitability_Seeding"),
+            GenerateElectricity = ParseInt(obj, "WorkSuitability_GenerateElectricity"),
+            Handcraft = ParseInt(obj, "WorkSuitability_Handcraft"),
+            Collection = ParseInt(obj, "WorkSuitability_Collection"),
+            Deforest = ParseInt(obj, "WorkSuitability_Deforest"),
+            Mining = ParseInt(obj, "WorkSuitability_Mining"),
+            OilExtraction = ParseInt(obj, "WorkSuitability_OilExtraction"),
+            ProduceMedicine = ParseInt(obj, "WorkSuitability_ProduceMedicine"),
+            Cool = ParseInt(obj, "WorkSuitability_Cool"),
+            Transport = ParseInt(obj, "WorkSuitability_Transport"),
+            MonsterFarm = ParseInt(obj, "WorkSuitability_MonsterFarm")
         };
 
         return true;
