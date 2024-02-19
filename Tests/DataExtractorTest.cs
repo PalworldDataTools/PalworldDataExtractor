@@ -1,7 +1,7 @@
 using CUE4Parse.UE4.Versions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PalworldDataExtractor;
-using PalworldDataExtractor.Models;
+using PalworldDataExtractor.Abstractions;
 using Tests.Tools;
 
 namespace Tests;

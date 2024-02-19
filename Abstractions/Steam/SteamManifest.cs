@@ -1,4 +1,4 @@
-﻿namespace PalworldDataExtractor.Models.Steam;
+﻿namespace PalworldDataExtractor.Abstractions.Steam;
 
 public class SteamManifest
 {

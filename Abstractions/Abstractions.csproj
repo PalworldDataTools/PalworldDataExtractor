@@ -5,15 +5,15 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <RootNamespace>PalworldDataExtractor</RootNamespace>
-        <AssemblyName>PalworldDataExtractor.Lib</AssemblyName>
-        <PackageId>PalworldDataExtractor.Lib</PackageId>
+        <RootNamespace>PalworldDataExtractor.Abstractions</RootNamespace>
+        <AssemblyName>PalworldDataExtractor.Abstractions</AssemblyName>
+        <PackageId>PalworldDataExtractor.Abstractions</PackageId>
         <Version>0.2.6</Version>
         <Title>Palworld Data Extractor</Title>
         <Authors>Ismail Bennani</Authors>
         <NeutralLanguage>en</NeutralLanguage>
         <Copyright>Ismail Bennani</Copyright>
-        <Description>Extract data from Palworld .pak file</Description>
+        <Description>Abstractions for the PalworldDataExtractor.Lib project</Description>
         <PackageProjectUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</PackageProjectUrl>
         <RepositoryUrl>https://github.com/PalworldDataTools/PalworldDataExtractor</RepositoryUrl>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -24,16 +24,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CUE4Parse" Version="1.1.1" />
-      <PackageReference Include="CUE4Parse-Conversion" Version="1.1.1" />
-    </ItemGroup>
-
-    <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath=""/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Abstractions\Abstractions.csproj"/>
     </ItemGroup>
 
 </Project>

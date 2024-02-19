@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using PalworldDataExtractor.Models.Pals;
-using PalworldDataExtractor.Models.Steam;
+using PalworldDataExtractor.Abstractions.Pals;
+using PalworldDataExtractor.Abstractions.Steam;
 
-namespace PalworldDataExtractor.Models;
+namespace PalworldDataExtractor.Abstractions;
 
 public class ExtractedData
 {

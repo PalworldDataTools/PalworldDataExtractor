@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using PalworldDataExtractor.Models;
-using PalworldDataExtractor.Models.Pals;
+using PalworldDataExtractor.Abstractions;
+using PalworldDataExtractor.Abstractions.Pals;
 
 namespace PalworldDataExtractor.Cli;
 

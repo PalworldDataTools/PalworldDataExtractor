@@ -3,8 +3,8 @@ using CommandLine;
 using CommandLine.Text;
 using CUE4Parse.UE4.Versions;
 using PalworldDataExtractor;
+using PalworldDataExtractor.Abstractions;
 using PalworldDataExtractor.Cli;
-using PalworldDataExtractor.Models;
 
 ParserResult<Options>? parserResult = new Parser(with => with.HelpWriter = null).ParseArguments<Options>(args);
 if (parserResult == null)

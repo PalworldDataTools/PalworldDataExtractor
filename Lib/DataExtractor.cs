@@ -2,10 +2,10 @@
 using CUE4Parse.FileProvider.Vfs;
 using CUE4Parse.MappingsProvider;
 using CUE4Parse.UE4.VirtualFileSystem;
+using PalworldDataExtractor.Abstractions;
+using PalworldDataExtractor.Abstractions.Pals;
+using PalworldDataExtractor.Abstractions.Steam;
 using PalworldDataExtractor.Extractors;
-using PalworldDataExtractor.Models;
-using PalworldDataExtractor.Models.Pals;
-using PalworldDataExtractor.Models.Steam;
 
 namespace PalworldDataExtractor;
 

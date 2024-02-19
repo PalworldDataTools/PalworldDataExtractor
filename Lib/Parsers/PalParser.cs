@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using CUE4Parse.UE4.Assets.Objects;
 using CUE4Parse.UE4.Objects.UObject;
-using PalworldDataExtractor.Models.Pals;
+using PalworldDataExtractor.Abstractions.Pals;
 
 namespace PalworldDataExtractor.Parsers;
 

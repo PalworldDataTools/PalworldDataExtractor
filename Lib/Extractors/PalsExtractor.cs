@@ -1,7 +1,7 @@
 ﻿using CUE4Parse.FileProvider;
 using CUE4Parse.UE4.Assets.Exports;
 using CUE4Parse.UE4.Assets.Exports.Engine;
-using PalworldDataExtractor.Models.Pals;
+using PalworldDataExtractor.Abstractions.Pals;
 using PalworldDataExtractor.Parsers;
 
 namespace PalworldDataExtractor.Extractors;

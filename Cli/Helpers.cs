@@ -1,4 +1,4 @@
-﻿using PalworldDataExtractor.Models.Pals;
+﻿using PalworldDataExtractor.Abstractions.Pals;
 
 namespace PalworldDataExtractor.Cli;
 

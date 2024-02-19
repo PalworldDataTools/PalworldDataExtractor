@@ -1,4 +1,4 @@
-﻿namespace PalworldDataExtractor.Models.Pals;
+﻿namespace PalworldDataExtractor.Abstractions.Pals;
 
 public class Pal
 {

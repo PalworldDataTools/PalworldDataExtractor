@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using PalworldDataExtractor.Models.Steam;
+using PalworldDataExtractor.Abstractions.Steam;
 
 namespace PalworldDataExtractor.Extractors;
 
