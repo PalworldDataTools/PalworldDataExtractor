@@ -1,9 +1,0 @@
-profile = "default"
-
-[msbuild]
-project = "./Abstractions.csproj"
-
-[github]
-user = "PalworldDataTools"
-repo = "PalworldDataExtractor"
-version_prefix = "v"

@@ -1,7 +1,7 @@
 profile = "default"
 
 [msbuild]
-project = "./Lib.csproj"
+project = ["./Abstractions/Abstractions.csproj", "./Lib/Lib.csproj"]
 
 [github]
 user = "PalworldDataTools"
