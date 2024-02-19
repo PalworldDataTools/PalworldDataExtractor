@@ -8,7 +8,7 @@
         <RootNamespace>PalworldDataExtractor.Abstractions</RootNamespace>
         <AssemblyName>PalworldDataExtractor.Abstractions</AssemblyName>
         <PackageId>PalworldDataExtractor.Abstractions</PackageId>
-        <Version>0.3.1</Version>
+        <Version>0.3.2</Version>
         <Title>Palworld Data Extractor</Title>
         <Authors>Ismail Bennani</Authors>
         <NeutralLanguage>en</NeutralLanguage>
