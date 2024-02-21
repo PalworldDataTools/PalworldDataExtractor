@@ -4,7 +4,7 @@ using PalworldDataExtractor;
 using PalworldDataExtractor.Abstractions;
 using Tests.Tools;
 
-namespace Tests;
+namespace Tests.IntegrationTests;
 
 [TestClass]
 public class DataExtractorTest
@@ -23,14 +23,14 @@ public class DataExtractorTest
             config =>
             {
                 config.UnrealEngineVersion = new VersionContainer(EGame.GAME_UE5_1);
-                config.MappingsFilePath = "../../../TestFiles/palworld-mappings-13312439.usmap";
+                config.MappingsFilePath = TestFiles.GetTestFilePath("palworld-mappings-13312439.usmap");
             }
         );
 
         ExtractedData data = await extractor.Extract();
 
-        data.DumpCompare(
-            "TestFiles/data.expected",
+        data.DumpJsonAndCompare(
+            "data.expected",
 #if DEBUG
             true
 #else
