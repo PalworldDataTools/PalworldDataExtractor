@@ -4,6 +4,7 @@ using CUE4Parse.UE4.Assets.Exports.Engine;
 using CUE4Parse.UE4.Assets.Objects;
 using CUE4Parse.UE4.Objects.UObject;
 using PalworldDataExtractor.Abstractions.Breeding;
+using PalworldDataExtractor.Readers;
 
 namespace PalworldDataExtractor.Extractors;
 

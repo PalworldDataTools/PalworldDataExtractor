@@ -5,6 +5,8 @@ public class Pal
     public required string? TribeName { get; init; }
     public required string Name { get; init; }
     public required string DisplayName { get; init; }
+    public required int ZukanIndex { get; init; }
+    public required string ZukanIndexSuffix { get; init; }
     public required int Rarity { get; init; }
     public required string Size { get; init; }
     public required string ElementType1 { get; init; }

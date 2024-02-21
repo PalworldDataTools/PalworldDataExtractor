@@ -2,7 +2,7 @@
 using CUE4Parse.UE4.Assets.Exports;
 using CUE4Parse.UE4.Assets.Exports.Engine;
 
-namespace PalworldDataExtractor.Extractors;
+namespace PalworldDataExtractor.Readers;
 
 public class UDataTableReader
 {

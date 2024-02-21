@@ -3,6 +3,7 @@ using CUE4Parse.FileProvider;
 using CUE4Parse.UE4.Assets.Exports.Engine;
 using CUE4Parse.UE4.Assets.Objects;
 using PalworldDataExtractor.Abstractions.Pals;
+using PalworldDataExtractor.Readers;
 
 namespace PalworldDataExtractor.Extractors;
 
@@ -36,6 +37,8 @@ class PalsExtractor
             TribeName = reader.ParseTribeName("Tribe"),
             Name = property,
             DisplayName = reader.ParseString("BPClass") ?? property,
+            ZukanIndex = reader.ParseInt("ZukanIndex"),
+            ZukanIndexSuffix = reader.ParseString("ZukanIndexSuffix") ?? "",
             Rarity = reader.ParseInt("Rarity"),
             Size = reader.ParseSize("Size") ?? "",
             ElementType1 = reader.ParseElementType("ElementType1") ?? "",

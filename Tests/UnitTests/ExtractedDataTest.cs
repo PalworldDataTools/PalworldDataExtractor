@@ -37,6 +37,8 @@ public class ExtractedDataTest
                             TribeName = "PAL_TRIBE",
                             Name = "PAL_NAME",
                             DisplayName = "PAL_DISPLAY_NAME",
+                            ZukanIndex = 0,
+                            ZukanIndexSuffix = "ZUKAN_SUFFIX",
                             Rarity = 1,
                             Size = "PAL_SIZE",
                             ElementType1 = "PAL_ELEMENT1",

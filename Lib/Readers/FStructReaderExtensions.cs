@@ -1,4 +1,4 @@
-﻿namespace PalworldDataExtractor.Extractors;
+﻿namespace PalworldDataExtractor.Readers;
 
 public static class FStructReaderExtensions
 {
