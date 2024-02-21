@@ -15,6 +15,7 @@ public class DataExporter
     const string TribesDirectory = "Pals";
     const string EnumsDirectory = "Enums";
     const string PalsManifestFileName = "pals";
+    const string PalUniqueBreedingCombinations = "combis";
     const string SteamManifestFileName = "steam";
 
     readonly string _targetDirectory;
@@ -45,6 +46,7 @@ public class DataExporter
         work.Add(ExportSteamManifest(root, data));
         work.AddRange(data.Tribes.Select(tribe => ExportTribe(tribesDirectory, tribe, data.TribeIcons.GetValueOrDefault(tribe.Name))));
         work.Add(ExportPalsManifest(tribesDirectory, data));
+        work.Add(ExportPalUniqueBreedingCombinations(tribesDirectory, data));
 
         await Task.WhenAll(work);
     }
@@ -81,6 +83,12 @@ public class DataExporter
         string filePath = Path.Combine(root.FullName, PalsManifestFileName + ".json");
         IReadOnlyDictionary<string, PalsManifest.Entry> manifest = PalsManifest.FromExtractedData(data);
         await WriteAsJson(manifest, filePath);
+    }
+
+    async Task ExportPalUniqueBreedingCombinations(DirectoryInfo root, ExtractedData data)
+    {
+        string filePath = Path.Combine(root.FullName, PalUniqueBreedingCombinations + ".json");
+        await WriteAsJson(data.UniqueBreedingCombinations, filePath);
     }
 
     async Task ExportPal(DirectoryInfo root, Pal pal)
