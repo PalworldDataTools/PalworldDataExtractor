@@ -33,13 +33,13 @@ class PalsExtractor
 
         pal = new Pal
         {
-            TribeName = ParseTribeName(reader, "Tribe"),
+            TribeName = reader.ParseTribeName("Tribe"),
             Name = property,
             DisplayName = reader.ParseString("BPClass") ?? property,
             Rarity = reader.ParseInt("Rarity"),
-            Size = ParseSize(reader, "Size") ?? "",
-            ElementType1 = ParseElementType(reader, "ElementType1") ?? "",
-            ElementType2 = ParseElementType(reader, "ElementType2") ?? "",
+            Size = reader.ParseSize("Size") ?? "",
+            ElementType1 = reader.ParseElementType("ElementType1") ?? "",
+            ElementType2 = reader.ParseElementType("ElementType2") ?? "",
             Price = reader.ParseFloat("Price"),
             IsNocturnal = reader.ParseBool("Nocturnal"),
             IsEdible = reader.ParseBool("Edible"),
@@ -86,8 +86,4 @@ class PalsExtractor
 
         return true;
     }
-
-    static string? ParseTribeName(FStructReader reader, string property) => reader.ParseEnumValue(property, "EPalTribeID::");
-    static string? ParseSize(FStructReader reader, string property) => reader.ParseEnumValue(property, "EPalSizeType::");
-    static string? ParseElementType(FStructReader reader, string property) => reader.ParseEnumValue(property, "EPalElementType::");
 }

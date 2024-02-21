@@ -3,6 +3,7 @@ using CUE4Parse.FileProvider.Vfs;
 using CUE4Parse.MappingsProvider;
 using CUE4Parse.UE4.VirtualFileSystem;
 using PalworldDataExtractor.Abstractions;
+using PalworldDataExtractor.Abstractions.Breeding;
 using PalworldDataExtractor.Abstractions.Pals;
 using PalworldDataExtractor.Abstractions.Steam;
 using PalworldDataExtractor.Extractors;
@@ -28,8 +29,9 @@ public class DataExtractor : IDisposable
         SteamManifest? steamManifest = await ExtractSteamManifest();
         PalTribe[] tribes = await ExtractTribes();
         IReadOnlyDictionary<string, byte[]> palIcons = await ExtractPalIcons();
+        PalBreedingCombination[] uniqueBreedingCombinations = await ExtractUniqueBreedingCombinations();
 
-        return new ExtractedData { SteamManifest = steamManifest, Tribes = tribes, TribeIcons = palIcons };
+        return new ExtractedData { SteamManifest = steamManifest, Tribes = tribes, TribeIcons = palIcons, UniqueBreedingCombinations = uniqueBreedingCombinations };
     }
 
     async Task<SteamManifest?> ExtractSteamManifest()
@@ -59,6 +61,9 @@ public class DataExtractor : IDisposable
         IReadOnlyDictionary<string, byte[]> palIcons = await new PalIconsExtractor(_provider).ExtractPalsAsync();
         return palIcons;
     }
+
+    async Task<PalBreedingCombination[]> ExtractUniqueBreedingCombinations() =>
+        (await new UniquePalBreedingCombinationExtractor(_provider).ExtractUniquePalBreedingCombinationsAsync()).ToArray();
 
     public void Dispose()
     {
