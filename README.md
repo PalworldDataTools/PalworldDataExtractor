@@ -63,7 +63,18 @@ The CLI exports all the data in the `ExtractedData` result of the extraction to 
       ```
       The `Main` field is always present, the `Icon` field might be absent if the icon could not be found in the .pak file, and the `Boss`, `Gym` and `OtherVariants` fields are absent when the variants don't exist.
       All the paths that are provided are relative to the manifest file, they point to the other subdirectories of the `Pals/` directory.
+    - `combis.json`: contains the special breeding pal combinations. Each entry contains the names of the two tribes to which the parent should belong and the name of the child pal, for example:
+      ```
+      {
+        "parentTribeA": "FairyDragon",
+        "parentTribeB": "Serpent",
+        "childCharacterId": "FairyDragon_Water"
+      }
+      ```
     - one directory per pal tribe: in each folder there is the icon representing the tribe and the data of all the existing variants (main, boss, gym, etc..)
+  - `L10N`: contains the localization files of the game
+    - one directory per language
+      - one file per namespace: each namespace contains a dictionary of correspondencies between L10N strings and their values in the corresponding language
 
 ### Usage
 
