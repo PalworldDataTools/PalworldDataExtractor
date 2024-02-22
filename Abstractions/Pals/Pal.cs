@@ -2,6 +2,7 @@
 
 public class Pal
 {
+    public required int GameIndex { get; set; }
     public required string? TribeName { get; init; }
     public required string Name { get; init; }
     public required int ZukanIndex { get; init; }

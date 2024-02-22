@@ -19,10 +19,10 @@ class PalsExtractor
     public async Task<IEnumerable<Pal>> ExtractPalsAsync()
     {
         UDataTable palTable = await _tableReader.Extract(@"Pal\Content\Pal\DataTable\Character\DT_PalMonsterParameter");
-        return palTable.RowMap.Select(kv => TryParse(kv.Key.Text, kv.Value, out Pal? pal) ? pal : null).Where(p => p != null).Select(p => p!);
+        return palTable.RowMap.Select((kv, index) => TryParse(index, kv.Key.Text, kv.Value, out Pal? pal) ? pal : null).Where(p => p != null).Select(p => p!);
     }
 
-    static bool TryParse(string property, FStructFallback obj, [NotNullWhen(true)] out Pal? pal)
+    static bool TryParse(int index, string property, FStructFallback obj, [NotNullWhen(true)] out Pal? pal)
     {
         FStructReader reader = new(obj);
 
@@ -34,6 +34,7 @@ class PalsExtractor
 
         pal = new Pal
         {
+            GameIndex = index,
             TribeName = reader.ParseTribeName("Tribe"),
             Name = property,
             ZukanIndex = reader.ParseInt("ZukanIndex"),

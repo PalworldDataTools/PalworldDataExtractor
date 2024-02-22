@@ -34,6 +34,7 @@ public class ExtractedDataTest
                     {
                         new Pal
                         {
+                            GameIndex = -1,
                             TribeName = "PAL_TRIBE",
                             Name = "PAL_NAME",
                             ZukanIndex = 0,
