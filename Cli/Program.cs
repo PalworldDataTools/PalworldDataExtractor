@@ -105,6 +105,8 @@ if (!quiet)
     Console.WriteLine("Statistics:");
     Console.WriteLine($"Tribes: {data.Tribes.Count}");
     Console.WriteLine($"Pals: {data.Tribes.Sum(t => t.Pals.Count)}");
+    Console.WriteLine($"Languages: {string.Join(", ", data.LocalizationFiles.Select(f => f.Key))}");
+    Console.WriteLine($"Text entries: {data.LocalizationFiles.First().Value.Namespaces.Sum(ns => ns.Value.Fields.Count)}");
     Console.WriteLine();
 }
 

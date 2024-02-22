@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 using PalworldDataExtractor.Abstractions;
+using PalworldDataExtractor.Abstractions.L10N;
 using PalworldDataExtractor.Abstractions.Pals;
 
 namespace PalworldDataExtractor.Cli;
@@ -14,6 +15,7 @@ public class DataExporter
     };
     const string TribesDirectory = "Pals";
     const string EnumsDirectory = "Enums";
+    const string LocalizationDirectory = "L10N";
     const string PalsManifestFileName = "pals";
     const string PalUniqueBreedingCombinations = "combis";
     const string SteamManifestFileName = "steam";
@@ -35,18 +37,20 @@ public class DataExporter
 
         DirectoryInfo enumsDirectory = root.CreateSubdirectory(EnumsDirectory);
         DirectoryInfo tribesDirectory = root.CreateSubdirectory(TribesDirectory);
+        DirectoryInfo localizationDirectory = root.CreateSubdirectory(LocalizationDirectory);
 
         List<Task> work =
         [
             ExportEnum(enumsDirectory, "ElementType", p => new[] { p.ElementType1, p.ElementType2 }, data),
-            ExportEnum(enumsDirectory, "SizeType", p => new[] { p.Size }, data)
+            ExportEnum(enumsDirectory, "SizeType", p => new[] { p.Size }, data),
+            ExportSteamManifest(root, data)
         ];
 
 
-        work.Add(ExportSteamManifest(root, data));
         work.AddRange(data.Tribes.Select(tribe => ExportTribe(tribesDirectory, tribe, data.TribeIcons.GetValueOrDefault(tribe.Name))));
         work.Add(ExportPalsManifest(tribesDirectory, data));
         work.Add(ExportPalUniqueBreedingCombinations(tribesDirectory, data));
+        work.Add(ExportLocalizationFiles(localizationDirectory, data));
 
         await Task.WhenAll(work);
     }
@@ -89,6 +93,24 @@ public class DataExporter
     {
         string filePath = Path.Combine(root.FullName, PalUniqueBreedingCombinations + ".json");
         await WriteAsJson(data.UniqueBreedingCombinations, filePath);
+    }
+
+    async Task ExportLocalizationFiles(DirectoryInfo root, ExtractedData data)
+    {
+        List<Task> work = new();
+
+        foreach (KeyValuePair<string, LocalizationFile> localizationFileEntry in data.LocalizationFiles)
+        {
+            DirectoryInfo languageDirectory = root.CreateSubdirectory(localizationFileEntry.Key);
+
+            foreach (KeyValuePair<string, LocalizationNamespace> localizationNsEntry in localizationFileEntry.Value.Namespaces)
+            {
+                string path = Path.Combine(languageDirectory.FullName, localizationNsEntry.Key + ".json");
+                work.Add(WriteAsJson(localizationNsEntry.Value, path));
+            }
+        }
+
+        await Task.WhenAll(work);
     }
 
     async Task ExportPal(DirectoryInfo root, Pal pal)
