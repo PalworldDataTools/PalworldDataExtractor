@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PalworldDataExtractor.Abstractions;
 using PalworldDataExtractor.Abstractions.Breeding;
+using PalworldDataExtractor.Abstractions.L10N;
 using PalworldDataExtractor.Abstractions.Pals;
 using PalworldDataExtractor.Abstractions.Steam;
 using Tests.Tools;
@@ -96,6 +97,77 @@ public class ExtractedDataTest
             UniqueBreedingCombinations = new[]
             {
                 new PalBreedingCombination("tribe1", "tribe2", "child")
+            },
+            LocalizationFiles = new Dictionary<string, LocalizationFile>
+            {
+                {
+                    "language1",
+                    new LocalizationFile
+                    {
+                        Language = "language1",
+                        Namespaces = new Dictionary<string, LocalizationNamespace>
+                        {
+                            {
+                                "namespace1",
+                                new LocalizationNamespace
+                                {
+                                    Namespace = "namespace1",
+                                    Fields = new Dictionary<string, string>
+                                    {
+                                        { "field1", "value1 language1" },
+                                        { "field2", "value2 language1" }
+                                    }
+                                }
+                            },
+                            {
+                                "namespace2",
+                                new LocalizationNamespace
+                                {
+                                    Namespace = "namespace2",
+                                    Fields = new Dictionary<string, string>
+                                    {
+                                        { "field3", "value3 language1" },
+                                        { "field4", "value4 language1" }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "language2",
+                    new LocalizationFile
+                    {
+                        Language = "language2",
+                        Namespaces = new Dictionary<string, LocalizationNamespace>
+                        {
+                            {
+                                "namespace1",
+                                new LocalizationNamespace
+                                {
+                                    Namespace = "namespace1",
+                                    Fields = new Dictionary<string, string>
+                                    {
+                                        { "field1", "value1 language2" },
+                                        { "field2", "value2 language2" }
+                                    }
+                                }
+                            },
+                            {
+                                "namespace2",
+                                new LocalizationNamespace
+                                {
+                                    Namespace = "namespace2",
+                                    Fields = new Dictionary<string, string>
+                                    {
+                                        { "field3", "value3 language2" },
+                                        { "field4", "value4 language2" }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         };
 

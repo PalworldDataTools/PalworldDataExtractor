@@ -18,7 +18,7 @@ class PalsExtractor
 
     public async Task<IEnumerable<Pal>> ExtractPalsAsync()
     {
-        UDataTable palTable = await _tableReader.Extract(@"Pal\Content\Pal\DataTable\Character\DT_PalMonsterParameter");
+        UDataTable palTable = await _tableReader.ExtractAsync(@"Pal\Content\Pal\DataTable\Character\DT_PalMonsterParameter");
         return palTable.RowMap.Select((kv, index) => TryParse(index, kv.Key.Text, kv.Value, out Pal? pal) ? pal : null).Where(p => p != null).Select(p => p!);
     }
 

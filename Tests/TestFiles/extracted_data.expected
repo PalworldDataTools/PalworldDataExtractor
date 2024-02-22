@@ -75,5 +75,45 @@
       "ParentTribeB": "tribe2",
       "ChildCharacterId": "child"
     }
-  ]
+  ],
+  "LocalizationFiles": {
+    "language1": {
+      "Language": "language1",
+      "Namespaces": {
+        "namespace1": {
+          "Namespace": "namespace1",
+          "Fields": {
+            "field1": "value1 language1",
+            "field2": "value2 language1"
+          }
+        },
+        "namespace2": {
+          "Namespace": "namespace2",
+          "Fields": {
+            "field3": "value3 language1",
+            "field4": "value4 language1"
+          }
+        }
+      }
+    },
+    "language2": {
+      "Language": "language2",
+      "Namespaces": {
+        "namespace1": {
+          "Namespace": "namespace1",
+          "Fields": {
+            "field1": "value1 language2",
+            "field2": "value2 language2"
+          }
+        },
+        "namespace2": {
+          "Namespace": "namespace2",
+          "Fields": {
+            "field3": "value3 language2",
+            "field4": "value4 language2"
+          }
+        }
+      }
+    }
+  }
 }

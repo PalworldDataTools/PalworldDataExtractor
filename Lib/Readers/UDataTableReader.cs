@@ -13,7 +13,7 @@ public class UDataTableReader
         _provider = provider;
     }
 
-    public async Task<UDataTable> Extract(string file)
+    public async Task<UDataTable> ExtractAsync(string file)
     {
         List<UObject> objects = (await _provider.LoadAllObjectsAsync(file)).ToList();
         if (objects.Count == 0)

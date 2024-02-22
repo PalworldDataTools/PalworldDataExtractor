@@ -19,7 +19,7 @@ public class UniquePalBreedingCombinationExtractor
 
     public async Task<IEnumerable<PalBreedingCombination>> ExtractUniquePalBreedingCombinationsAsync()
     {
-        UDataTable palTable = await _tableReader.Extract(@"Pal\Content\Pal\DataTable\Character\DT_PalCombiUnique");
+        UDataTable palTable = await _tableReader.ExtractAsync(@"Pal\Content\Pal\DataTable\Character\DT_PalCombiUnique");
 
         List<PalBreedingCombination> result = new();
 

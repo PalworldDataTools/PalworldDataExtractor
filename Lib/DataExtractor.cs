@@ -4,6 +4,7 @@ using CUE4Parse.MappingsProvider;
 using CUE4Parse.UE4.VirtualFileSystem;
 using PalworldDataExtractor.Abstractions;
 using PalworldDataExtractor.Abstractions.Breeding;
+using PalworldDataExtractor.Abstractions.L10N;
 using PalworldDataExtractor.Abstractions.Pals;
 using PalworldDataExtractor.Abstractions.Steam;
 using PalworldDataExtractor.Extractors;
@@ -26,15 +27,19 @@ public class DataExtractor : IDisposable
 
     public async Task<ExtractedData> Extract()
     {
-        SteamManifest? steamManifest = await ExtractSteamManifest();
-        PalTribe[] tribes = await ExtractTribes();
-        IReadOnlyDictionary<string, byte[]> palIcons = await ExtractPalIcons();
-        PalBreedingCombination[] uniqueBreedingCombinations = await ExtractUniqueBreedingCombinations();
+        SteamManifest? steamManifest = await ExtractSteamManifestAsync();
+        PalTribe[] tribes = await ExtractTribesAsync();
+        IReadOnlyDictionary<string, byte[]> palIcons = await ExtractPalIconsAsync();
+        PalBreedingCombination[] uniqueBreedingCombinations = await ExtractUniqueBreedingCombinationsAsync();
+        Dictionary<string, LocalizationFile> localizationFiles = await ExtractLocalizationFilesAsync();
 
-        return new ExtractedData { SteamManifest = steamManifest, Tribes = tribes, TribeIcons = palIcons, UniqueBreedingCombinations = uniqueBreedingCombinations };
+        return new ExtractedData
+        {
+            SteamManifest = steamManifest, Tribes = tribes, TribeIcons = palIcons, UniqueBreedingCombinations = uniqueBreedingCombinations, LocalizationFiles = localizationFiles
+        };
     }
 
-    async Task<SteamManifest?> ExtractSteamManifest()
+    async Task<SteamManifest?> ExtractSteamManifestAsync()
     {
         string absoluteDir = Path.GetFullPath(_pakFileDirectory);
         int indexOfSteamApps = absoluteDir.IndexOf("steamapps", StringComparison.InvariantCultureIgnoreCase);
@@ -49,21 +54,23 @@ public class DataExtractor : IDisposable
         return await extractor.Extract();
     }
 
-    async Task<PalTribe[]> ExtractTribes()
+    async Task<PalTribe[]> ExtractTribesAsync()
     {
         IEnumerable<Pal> pals = await new PalsExtractor(_provider).ExtractPalsAsync();
         PalTribe[] tribes = pals.GroupBy(p => p.TribeName).Select(g => new PalTribe { Name = g.Key ?? "???", Pals = g.ToArray() }).ToArray();
         return tribes;
     }
 
-    async Task<IReadOnlyDictionary<string, byte[]>> ExtractPalIcons()
+    async Task<IReadOnlyDictionary<string, byte[]>> ExtractPalIconsAsync()
     {
         IReadOnlyDictionary<string, byte[]> palIcons = await new PalIconsExtractor(_provider).ExtractIconsAsync();
         return palIcons;
     }
 
-    async Task<PalBreedingCombination[]> ExtractUniqueBreedingCombinations() =>
+    async Task<PalBreedingCombination[]> ExtractUniqueBreedingCombinationsAsync() =>
         (await new UniquePalBreedingCombinationExtractor(_provider).ExtractUniquePalBreedingCombinationsAsync()).ToArray();
+
+    async Task<Dictionary<string, LocalizationFile>> ExtractLocalizationFilesAsync() => await new LocalizationFilesExtractor(_provider).ExtractLocalizationFilesAsync();
 
     public void Dispose()
     {
