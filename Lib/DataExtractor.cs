@@ -58,7 +58,7 @@ public class DataExtractor : IDisposable
 
     async Task<IReadOnlyDictionary<string, byte[]>> ExtractPalIcons()
     {
-        IReadOnlyDictionary<string, byte[]> palIcons = await new PalIconsExtractor(_provider).ExtractPalsAsync();
+        IReadOnlyDictionary<string, byte[]> palIcons = await new PalIconsExtractor(_provider).ExtractIconsAsync();
         return palIcons;
     }
 
