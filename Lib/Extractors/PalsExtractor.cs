@@ -36,7 +36,6 @@ class PalsExtractor
         {
             TribeName = reader.ParseTribeName("Tribe"),
             Name = property,
-            DisplayName = reader.ParseString("BPClass") ?? property,
             ZukanIndex = reader.ParseInt("ZukanIndex"),
             ZukanIndexSuffix = reader.ParseString("ZukanIndexSuffix") ?? "",
             Rarity = reader.ParseInt("Rarity"),
