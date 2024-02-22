@@ -23,8 +23,8 @@ public class FStructReader
         return valueString[prefix.Length..];
     }
 
-    public string? ParseString(string property) => _obj.TryGetValue(out FName value, property) ? value.Text : null;
-    public int ParseInt(string property) => _obj.TryGetValue(out int value, property) ? value : 0;
-    public float ParseFloat(string property) => _obj.TryGetValue(out float value, property) ? value : 0f;
-    public bool ParseBool(string property) => _obj.TryGetValue(out bool value, property) && value;
+    public string? ParseString(string property) => (string?)_obj.GetOrDefault<string>(property) ?? _obj.GetOrDefault<FName>(property).Text;
+    public int ParseInt(string property) => _obj.GetOrDefault<int>(property);
+    public float ParseFloat(string property) => _obj.GetOrDefault<float>(property);
+    public bool ParseBool(string property) => _obj.GetOrDefault<bool>(property);
 }
